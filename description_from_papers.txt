@@ -1,0 +1,21 @@
+when the batch size is set to 1, has been termed “instance normalization” and has been demonstrated to be effective at image generation tasks [54]. In our experiments, we use batch
+sizes between 1 and 10 depending on the experiment.
+
+We use minibatch SGD and apply the Adam solver [32], with a learning rate of 0.0002, and momentum parameters β1 = 0.5, β2 = 0.999.
+
+Generator:
+    # Encoder:
+        # C64-C128-C256-C512-C512-C512-C512-C512
+    # Decoder:
+        # CD512-CD512-CD512-C512-C256-C128-C64
+    # After the last layer in the decoder, a convolution is applied to map to the number of output channels (3 in general,except in colorization, where it is 2), followed by a Tanh function. 
+    # As an exception to the above notation, BatchNorm is not applied to the first C64 layer in the encoder.
+    # All ReLUs in the encoder are leaky, with slope 0.2, while ReLUs in the decoder are not leaky.
+    # U-net like skip connections (concats the filters from convolutions and transposedconvs of same spatial dimensions)
+
+Both:
+    # Both generator and discriminator use modules of the form convolution-BatchNorm-ReLu [29].
+    # Stride :The first is the all convolutional net (Springenberg et al., 2014) which replaces deterministic spatial
+    # pooling functions (such as maxpooling) with strided convolutions, allowing the network to learn
+    # its own spatial downsampling. We use this approach in our generator, allowing it to learn its own
+    # spatial upsampling, and discriminator.
