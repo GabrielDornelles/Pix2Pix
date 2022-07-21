@@ -28,17 +28,17 @@ def log_some_examples(gen, val_loader, device):
         y_fake = y_fake * 0.5 + 0.5
         y_fake = y_fake.detach().cpu().numpy().transpose([0,2,3,1])
 
+    half = int(x.shape[0] / 2)
     # concat originals
     original_images = y.detach().cpu().numpy().transpose([0,2,3,1])
-    upper = np.hstack(original_images[:8])
-    lower = np.hstack(original_images[8:])
+    upper = np.hstack(original_images[:half])
+    lower = np.hstack(original_images[half:])
     images = np.vstack((upper,lower))
 
     # Concat sketches
-    half = int(x.shape[0] / 2)
     sketch_images = x.detach().cpu().numpy().transpose([0,2,3,1])
-    upper = np.hstack(sketch_images[:8])
-    lower = np.hstack(sketch_images[8:])
+    upper = np.hstack(sketch_images[:half])
+    lower = np.hstack(sketch_images[half:])
     sketches = np.vstack((upper,lower))
 
     # Concat generated images

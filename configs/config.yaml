@@ -10,7 +10,3 @@ training:
   lr: 0.0002 
   num_epochs: 100
   l1_lambda: 100
-
-defaults:
-  - override hydra/job_logging: colorlog
-  - override hydra/hydra_logging: colorlog
