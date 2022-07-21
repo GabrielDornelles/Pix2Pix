@@ -7,8 +7,7 @@ class Block(nn.Module):
         super(Block, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=4, stride=stride, padding=1, bias=False, padding_mode="reflect"),
-            #nn.BatchNorm2d(out_channels),
-            nn.InstanceNorm2d(out_channels, affine=True),
+            nn.InstanceNorm2d(out_channels, affine=False),
             nn.LeakyReLU(0.2),
         )
 

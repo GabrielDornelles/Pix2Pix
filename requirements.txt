@@ -1,0 +1,8 @@
+albumentations
+hydra-core
+omegaconf
+rich
+torch
+torchsummary
+torchvision
+wandb

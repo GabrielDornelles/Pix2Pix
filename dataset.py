@@ -1,9 +1,8 @@
 import numpy as np
-import config
+import transforms
 import os
 from PIL import Image
-from torch.utils.data import Dataset, DataLoader
-from torchvision.utils import save_image
+from torch.utils.data import Dataset
 
 
 class Sketch2ColorDataset(Dataset):
@@ -22,11 +21,11 @@ class Sketch2ColorDataset(Dataset):
         input_image = image[:, 512:, :]
         target_image = image[:, :512, :]
 
-        augmentations = config.both_transform(image=input_image, image0=target_image)
+        augmentations = transforms.both_transform(image=input_image, image0=target_image)
         input_image = augmentations["image"]
         target_image = augmentations["image0"]
 
-        input_image = config.transform_only_input(image=input_image)["image"]
-        target_image = config.transform_only_mask(image=target_image)["image"]
+        input_image = transforms.transform_only_input(image=input_image)["image"]
+        target_image = transforms.transform_only_mask(image=target_image)["image"]
 
         return input_image, target_image

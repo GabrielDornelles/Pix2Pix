@@ -9,14 +9,13 @@ class DownBlock(nn.Module):
         super(DownBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=4, stride=2, padding=1, bias=False, padding_mode="reflect"),
-            #nn.BatchNorm2d(out_channels),
-            nn.InstanceNorm2d(out_channels, affine=True),
+            nn.InstanceNorm2d(out_channels, affine=False),
             nn.LeakyReLU(0.2),
         )
        
     def forward(self, x):
         x = self.conv(x)
-        return  x
+        return x
 
 
 class UpBlock(nn.Module):
@@ -25,8 +24,7 @@ class UpBlock(nn.Module):
         super(UpBlock, self).__init__()
         self.conv = nn.Sequential(
             nn.ConvTranspose2d(in_channels, out_channels, kernel_size=4, stride=2, padding=1, bias=False),
-            #nn.BatchNorm2d(out_channels),
-            nn.InstanceNorm2d(out_channels, affine=True),
+            nn.InstanceNorm2d(out_channels, affine=False),
             nn.ReLU()
         )
 

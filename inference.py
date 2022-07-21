@@ -1,4 +1,3 @@
-
 from generator import Generator
 import torch
 import cv2

@@ -1,0 +1,16 @@
+processing:
+  device: cuda
+  batch_size: 8
+  num_workers: 4
+  save_model_every_n_epochs: 5
+
+training:
+  train_dir: data/train
+  val_dir: data/val
+  lr: 0.0002 
+  num_epochs: 100
+  l1_lambda: 100
+
+defaults:
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
