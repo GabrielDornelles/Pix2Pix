@@ -6,6 +6,8 @@ This repository is an implementation of the paper [Image-to-Image Translation wi
 
 I've implemented it reading the paper and comparing with the original authors/AladdinPersson implementation.
 
+This Gan was trained to colorize anime pictures:
+
 <p style="text-align: center;"> Inputs </p>
 
 ![input_81](https://user-images.githubusercontent.com/56324869/180009763-bf8a3e74-42a8-44ba-9bb3-3a8200135bf7.png)
